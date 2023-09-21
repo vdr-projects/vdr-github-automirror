@@ -1,6 +1,11 @@
 name: Create a GitHub mirror of the VDR sources and update the GitHub wiki
 on:
-  - push
+  push:
+    branches:
+      - 'master'
+  schedule:
+    - cron: '20 1 * * *'
+
 jobs:
   automirror:
     runs-on: ubuntu-latest
