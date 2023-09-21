@@ -9,6 +9,10 @@ jobs:
       - name: Install pandoc
         run: |
           sudo apt-get install pandoc
+      - name: Setup git identity
+        run: |
+          git config --global user.email "automirror@nohost.invalid"
+          git config --global user.name "AutoMirror Bot"
       - name: Setup SSH Keys and known hosts
         env:
           SSH_AUTH_SOCK: /tmp/ssh_agent.sock
