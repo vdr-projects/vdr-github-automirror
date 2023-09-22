@@ -51,4 +51,8 @@ def crosslink(content):
     content = re.sub(r'([\'])folders.conf([\'])',
                      r'\1<a href="VDR-file-formats-and-conventions#folders">folders.conf</a>\2', content)
 
+    # epg.data
+    content = re.sub(r'([\'])epg.data([\'])',
+                     r'\1<a href="VDR-file-formats-and-conventions#epg-data">epg.data</a>\2', content)
+
     return content

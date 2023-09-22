@@ -18,6 +18,7 @@
 
 import sys
 import re
+from crosslink import crosslink
 
 input_str = sys.stdin.read()
 
@@ -39,7 +40,7 @@ for command in helppages.split(',\n')[:-1]:
     lines = list(map(lambda a: a.strip(' "').replace("\\n", ""), lines))
     print("### " + lines.pop(0))
     print()
-    print(" ".join(lines))
+    print(crosslink(" ".join(lines)))
     print()
 
 # Get the SVDRP reply codes
