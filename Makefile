@@ -110,8 +110,8 @@ vdr.wiki/The-VDR-Plugin-System.md: vdr/PLUGINS.html vdr.wiki
 # This target also creates a commit if changes where made.
 #
 
-.PHONY: wiki-push $(MD_FILES)
-wiki-push:
+.PHONY: wiki-push
+wiki-push: $(MD_FILES)
 	git -C vdr.wiki diff --quiet || git -C vdr.wiki commit -am 'Auto-Update wiki pages'
 	git -C vdr.wiki push
 
@@ -122,8 +122,8 @@ wiki-push:
 # Require the Wiki files to be created before pushing the mirror.
 # This is an added security. If something fails when creating the Wiki files
 # then an admin should check the automated job.
-.PHONY: mirror-push $(MD_FILES)
-mirror-push:
+.PHONY: mirror-push
+mirror-push: $(MD_FILES)
 #	Make sure our mirror is set as the origin URL. Then push a mirror.
 	git -C vdr.git remote set-url origin $(MIRROR_REPO)
 	git -C vdr.git push --mirror
