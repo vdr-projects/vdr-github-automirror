@@ -31,8 +31,21 @@ def crosslink(content):
     content = re.sub(r'([,])(?:<strong>)?svdrpsend(?:</strong>)?\(1\)([<])',
                      r'\1<a href="svdrpsend-command-reference">svdrpsend(1)</a>\2', content)
 
-    # 'commands.conf'
+    # commands.conf
     content = re.sub(r'([\'])commands.conf([\'])',
                      r'\1<a href="VDR-file-formats-and-conventions#commands">commands.conf</a>\2', content)
+
+    # keymacros.conf
+    content = re.sub(r'([\'])keymacros.conf([\'])',
+                     r'\1<a href="VDR-file-formats-and-conventions#key-macros">keymacros.conf</a>\2', content)
+
+    # channels.conf
+    content = re.sub(r'([\'])channels.conf([\'])',
+                     r'\1<a href="VDR-file-formats-and-conventions#channels">channels.conf</a>\2', content)
+
+    # reccmds.conf
+    content = re.sub(r'([\'])reccmds.conf([\'])',
+                     r'\1<a href="VDR-file-formats-and-conventions#recording-commands">reccmds.conf</a>\2', content)
+
 
     return content
