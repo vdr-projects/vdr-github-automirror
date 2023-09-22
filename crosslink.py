@@ -16,19 +16,23 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-import sys
 import re
-from crosslink import crosslink
 
-input_str = sys.stdin.read()
+def crosslink(content):
+    # vdr(1)
+    content = re.sub(r'([,>])(?:<strong>)?vdr(?:</strong>)?\(1\)([<,])',
+                     r'\1[vdr(1)](VDR-command-reference)\2', content)
 
-# Get only the body
-body = re.search(r'<body>(.*)</body>', input_str, flags=re.DOTALL).group(1)
+    # vdr(5)
+    content = re.sub(r'([ >])(?:<strong>)?vdr(?:</strong>)?\(5\)([ \),<])',
+                     r'\1[vdr(5)](VDR-file-formats-and-conventions)\2', content)
 
-# Drop all "id" or "class" attributes from all HTML tabs
-body = re.sub(r'<([a-z0-9]+)(?: (?:id|class)=".*?")+>', r'<\1>', body)
+    # svdrpsend(1)
+    content = re.sub(r'([,])(?:<strong>)?svdrpsend(?:</strong>)?\(1\)([<])',
+                     r'\1[svdrpsend(1)](svdrpsend-command-reference)\2', content)
 
-# Wrap all <dt> contents into additional <h3> tags
-body = re.sub(r'<dt>(.*?)</dt>', r'<dt><h3>\1</h3></dt>', body, flags=re.DOTALL)
+    # 'commands.conf'
+    content = re.sub(r'([\'])commands.conf([\'])',
+                     r'\1[commands.conf](VDR-file-formats-and-conventions#commands)\2', content)
 
-print(crosslink(body))
+    return content

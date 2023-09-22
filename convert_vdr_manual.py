@@ -18,6 +18,7 @@
 
 import sys
 import re
+from crosslink import crosslink
 
 input_str = sys.stdin.read()
 
@@ -50,4 +51,4 @@ for index, paragraph in enumerate(paragraphs):
 
     # All other paragraphs can just be printed out
     else:
-        print(paragraph + "\n")
+        print(crosslink(paragraph) + "\n")

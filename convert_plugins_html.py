@@ -18,6 +18,7 @@
 
 import sys
 import re
+from crosslink import crosslink
 
 input_str = sys.stdin.read()
 
@@ -39,4 +40,4 @@ body = re.sub(r'<a name="[^"]+">(.*?)</a>', r'\1', body)
 # Now refactor the TOC links to point to the GitHub created anchors
 body = re.sub(r'<a href="#([^"]+)">', lambda a: '<a href="#' + a.group(1).lower().replace(" ", "-") + '">', body)
 
-print(body)
+print(crosslink(body))

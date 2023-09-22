@@ -134,4 +134,4 @@ mirror-push: $(MD_FILES)
 
 .PHONY: clean
 clean:
-	rm -rf vdr.git vdr vdr.wiki
+	rm -rf vdr.git vdr vdr.wiki __pycache__
