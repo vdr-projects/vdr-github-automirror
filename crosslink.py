@@ -21,18 +21,22 @@ import re
 def crosslink(content):
     # vdr(1)
     content = re.sub(r'([,>])(?:<strong>)?vdr(?:</strong>)?\(1\)([<,])',
-                     r'\1\n[vdr(1)](VDR-command-reference)\2', content)
+                     r'\1[vdr(1)](VDR-command-reference)\2', content)
 
     # vdr(5)
     content = re.sub(r'([ >])(?:<strong>)?vdr(?:</strong>)?\(5\)([ \),<])',
-                     r'\1\n[vdr(5)](VDR-file-formats-and-conventions)\2', content)
+                     r'\1[vdr(5)](VDR-file-formats-and-conventions)\2', content)
 
     # svdrpsend(1)
     content = re.sub(r'([,])(?:<strong>)?svdrpsend(?:</strong>)?\(1\)([<])',
-                     r'\1\n[svdrpsend(1)](svdrpsend-command-reference)\2', content)
+                     r'\1[svdrpsend(1)](svdrpsend-command-reference)\2', content)
 
     # 'commands.conf'
     content = re.sub(r'([\'])commands.conf([\'])',
-                     r'\1\n[commands.conf](VDR-file-formats-and-conventions#commands)\2', content)
+                     r'\1[commands.conf](VDR-file-formats-and-conventions#commands)\2', content)
+
+    # Workaround to insert one empty line between HTML and MarkDown.
+    # Otherwise GitHub won't render the MarkDown content.
+    content = re.sub(r'([a-z]>)\s*(\[[a-z])', r'\1\n\n\2', content)
 
     return content
