@@ -47,5 +47,8 @@ def crosslink(content):
     content = re.sub(r'([\'])reccmds.conf([\'])',
                      r'\1<a href="VDR-file-formats-and-conventions#recording-commands">reccmds.conf</a>\2', content)
 
+    # folders.conf
+    content = re.sub(r'([\'])folders.conf([\'])',
+                     r'\1<a href="VDR-file-formats-and-conventions#folders">folders.conf</a>\2', content)
 
     return content
