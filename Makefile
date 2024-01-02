@@ -38,9 +38,10 @@ vdr.git:
 #	Clone our GitHub mirror, first.
 #	Then replace the origin URL with the upstream URL and fetch changes.
 #	Doing it this way heavily reduces load on the upstream server.
-	git clone --bare $(MIRROR_REPO)
+	git clone --mirror $(MIRROR_REPO)
 	git -C vdr.git remote set-url origin $(VDR_REPO)
-	git -C vdr.git fetch
+	git -C vdr.git remote update
+	git -C vdr.git remote prune origin
 
 #
 # Checks out a local working copy of VDR. We use our previously created
