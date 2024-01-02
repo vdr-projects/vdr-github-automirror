@@ -49,6 +49,9 @@ for index, paragraph in enumerate(paragraphs):
             paragraph = paragraph.replace(f"({number})", f"<br>({number})")
         print(paragraph + "\n")
 
-    # All other paragraphs can just be printed out
+    # All other paragraphs.
     else:
+        # GitHub will misinterpret tildes for "strike-through" if not escaped
+        paragraph = paragraph.replace("~", "\\~")
+        # Add crosslinking and print paragraph
         print(crosslink(paragraph) + "\n")
