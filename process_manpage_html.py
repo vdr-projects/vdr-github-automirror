@@ -29,7 +29,7 @@ body = re.search(r'<body>(.*)</body>', input_str, flags=re.DOTALL).group(1)
 body = re.sub(r'<table class="head">.*?</table>', r'', body, flags=re.DOTALL)
 
 # Remove all links
-body = re.sub(r'<a [^>]+>(.+?)</a>', r'\1', body)
+body = re.sub(r'<a [^>]+>(.+?)</a>', r'\1', body, flags=re.DOTALL)
 
 # Drop all "id" or "class" attributes from all HTML tags
 body = re.sub(r'<([a-z0-9]+)(?: (?:id|class)="[^"]+")+>', r'<\1>', body)
