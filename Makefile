@@ -73,7 +73,7 @@ vdr.wiki:
 #
 
 define MAN_TO_MD =
-pandoc --standalone --to html $(1) | python3 ./process_pandoc_html.py > $(2)
+mandoc -T html $(1) | python3 ./process_manpage_html.py > $(2)
 endef
 
 vdr.wiki/VDR-command-reference.md: vdr/vdr.1

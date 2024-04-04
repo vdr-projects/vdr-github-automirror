@@ -20,15 +20,15 @@ import re
 
 def crosslink(content):
     # vdr(1)
-    content = re.sub(r'([,>])(?:<strong>)?vdr(?:</strong>)?\(1\)([<,])',
+    content = re.sub(r'([,>])(?:<b>)?vdr(?:</b>)?\(1\)([<,])',
                      r'\1<a href="VDR-command-reference">vdr(1)</a>\2', content)
 
     # vdr(5)
-    content = re.sub(r'([ >])(?:<strong>)?vdr(?:</strong>)?\(5\)([ \),<])',
+    content = re.sub(r'([ >])(?:<b>)?vdr(?:</b>)?\(5\)([ \),<])',
                      r'\1<a href="VDR-file-formats-and-conventions">vdr(5)</a>\2', content)
 
     # svdrpsend(1)
-    content = re.sub(r'([,])(?:<strong>)?svdrpsend(?:</strong>)?\(1\)([<])',
+    content = re.sub(r'([,])(?:<b>)?svdrpsend(?:</b>)?\(1\)([<])',
                      r'\1<a href="svdrpsend-command-reference">svdrpsend(1)</a>\2', content)
 
     # commands.conf

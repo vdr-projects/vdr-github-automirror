@@ -25,10 +25,16 @@ input_str = sys.stdin.read()
 # Get only the body
 body = re.search(r'<body>(.*)</body>', input_str, flags=re.DOTALL).group(1)
 
-# Drop all "id" or "class" attributes from all HTML tabs
-body = re.sub(r'<([a-z0-9]+)(?: (?:id|class)=".*?")+>', r'<\1>', body)
+# Remove the "head" table
+body = re.sub(r'<table class="head">.*?</table>', r'', body, flags=re.DOTALL)
+
+# Remove all links
+body = re.sub(r'<a [^>]+>(.+?)</a>', r'\1', body)
+
+# Drop all "id" or "class" attributes from all HTML tags
+body = re.sub(r'<([a-z0-9]+)(?: (?:id|class)="[^"]+")+>', r'<\1>', body)
 
 # Wrap all <dt> contents into additional <h3> tags
-body = re.sub(r'<dt>(.*?)</dt>', r'<dt><h3>\1</h3></dt>', body, flags=re.DOTALL)
+body = re.sub(r'<dt>(?:<b>)?(.*?)(?:</b>)?</dt>', r'<dt><h3>\1</h3></dt>', body, flags=re.DOTALL)
 
 print(crosslink(body))
