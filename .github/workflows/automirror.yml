@@ -11,9 +11,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
-      - name: Install pandoc
+      - name: Install mandoc
         run: |
-          sudo apt-get install pandoc
+          sudo apt-get install mandoc
       - name: Setup git identity
         run: |
           git config --global user.email "automirror@nohost.invalid"
