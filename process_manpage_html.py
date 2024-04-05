@@ -37,4 +37,10 @@ body = re.sub(r'<([a-z0-9]+)(?: (?:id|class)="[^"]+")+>', r'<\1>', body)
 # Wrap all <dt> contents into additional <h3> tags
 body = re.sub(r'<dt>(?:<b>)?(.*?)(?:</b>)?</dt>', r'<dt><h3>\1</h3></dt>', body, flags=re.DOTALL)
 
+# Replace series of space characters in headers with a single space character
+# Note: Two RegEx stacked with the first using a "positive lookbehind"
+body = re.sub(r'(?<=<h[1-3]>)([^<]+)',
+              lambda match: re.sub(r'\s+', r' ', match.group(1)),
+              body)
+
 print(crosslink(body))
