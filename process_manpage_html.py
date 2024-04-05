@@ -43,4 +43,9 @@ body = re.sub(r'(?<=<h[1-3]>)([^<]+)',
               lambda match: re.sub(r'\s+', r' ', match.group(1)),
               body)
 
+# Drop "<br/>" within "<pre>...</pre>" (bug in mandoc?)
+body = re.sub(r'(?<=<pre>)(.+?)(?=</pre>)',
+              lambda match: re.sub(r'<br/>\n?', r'', match.group(1)),
+              body, flags=re.DOTALL)
+
 print(crosslink(body))
