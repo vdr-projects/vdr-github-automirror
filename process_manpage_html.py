@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 
 #    Automated VDR repository mirror and wiki page generator
-#    Copyright © 2023  Manuel Reimer <manuel.reimer@gmx.de>
+#    Copyright © 2024  Manuel Reimer <manuel.reimer@gmx.de>
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published by
@@ -41,7 +41,7 @@ body = re.sub(r'<dt>(.*?)</dt>', r'<dt><h3>\1</h3></dt>', body, flags=re.DOTALL)
 # Replace series of space characters in headers with a single space character
 # Note: Two RegEx stacked with the first using a "positive lookbehind"
 body = re.sub(r'(?<=<h[1-3]>)(.+?)(?=</h[1-3]>)',
-              lambda match: re.sub(r'\s+', r' ',
+              lambda match: re.sub(r'(?:\s|&#x00A0;)+', r' ',
                                    re.sub(r'<[^>]+>', r'', match.group(1))),
               body, flags=re.DOTALL)
 
