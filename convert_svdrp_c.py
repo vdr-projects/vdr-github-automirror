@@ -28,9 +28,6 @@ input_str = input_str.replace("<", "&lt;").replace(">", "&gt;")
 # Get the actual help pages from the source file
 helppages = re.search(r'const char \*HelpPages\[\] = {\n(.*?)};', input_str, flags=re.DOTALL).group(1)
 
-# Main headline
-print("# SVDRP help")
-
 # Sub headline
 print("## SVDRP commands")
 
