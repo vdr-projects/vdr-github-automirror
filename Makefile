@@ -23,7 +23,8 @@ MD_FILES = vdr.wiki/VDR-Command-Reference.md\
            vdr.wiki/Svdrpsend-Command-Reference.md\
            vdr.wiki/VDR-Manual.md\
            vdr.wiki/SVDRP-Help.md\
-           vdr.wiki/The-VDR-Plugin-System.md
+           vdr.wiki/The-VDR-Plugin-System.md\
+           vdr.wiki/Version-History.md
 
 .PHONY: all
 all: vdr.git vdr.wiki $(MD_FILES) wiki-push mirror-push
@@ -105,6 +106,13 @@ vdr.wiki/SVDRP-Help.md: vdr/svdrp.c
 
 vdr.wiki/The-VDR-Plugin-System.md: vdr/PLUGINS.html vdr.wiki
 	python3 convert_plugins_html.py < $< > $@
+
+#
+# Version History
+#
+
+vdr.wiki/Version-History.md: vdr
+	python3 create_version_history.py vdr > $@
 
 #
 # Pushes the wiki pages to GitHub.
