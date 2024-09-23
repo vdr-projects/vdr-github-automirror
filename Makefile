@@ -18,11 +18,11 @@ VDR_REPO = git://git.tvdr.de/vdr.git
 MIRROR_REPO = git@github.com:vdr-projects/vdr.git
 WIKI_REPO = git@github.com:vdr-projects/vdr.wiki.git
 
-MD_FILES = vdr.wiki/VDR-command-reference.md\
-           vdr.wiki/VDR-file-formats-and-conventions.md\
-           vdr.wiki/svdrpsend-command-reference.md\
-           vdr.wiki/VDR-manual.md\
-           vdr.wiki/SVDRP-help.md\
+MD_FILES = vdr.wiki/VDR-Command-Reference.md\
+           vdr.wiki/VDR-File-Formats-and-Conventions.md\
+           vdr.wiki/Svdrpsend-Command-Reference.md\
+           vdr.wiki/VDR-Manual.md\
+           vdr.wiki/SVDRP-Help.md\
            vdr.wiki/The-VDR-Plugin-System.md
 
 .PHONY: all
@@ -76,27 +76,27 @@ define MAN_TO_MD =
 mandoc -T html $(1) | python3 ./process_manpage_html.py > $(2)
 endef
 
-vdr.wiki/VDR-command-reference.md: vdr/vdr.1
+vdr.wiki/VDR-Command-Reference.md: vdr/vdr.1
 	$(call MAN_TO_MD, $<, $@)
 
-vdr.wiki/VDR-file-formats-and-conventions.md: vdr/vdr.5
+vdr.wiki/VDR-File-Formats-and-Conventions.md: vdr/vdr.5
 	$(call MAN_TO_MD, $<, $@)
 
-vdr.wiki/svdrpsend-command-reference.md: vdr/svdrpsend.1
+vdr.wiki/Svdrpsend-Command-Reference.md: vdr/svdrpsend.1
 	$(call MAN_TO_MD, $<, $@)
 
 #
 # MANUAL
 #
 
-vdr.wiki/VDR-manual.md: vdr/MANUAL
+vdr.wiki/VDR-Manual.md: vdr/MANUAL
 	python3 convert_vdr_manual.py < $< > $@
 
 #
 # SVDRP documentation
 #
 
-vdr.wiki/SVDRP-help.md: vdr/svdrp.c
+vdr.wiki/SVDRP-Help.md: vdr/svdrp.c
 	python3 convert_svdrp_c.py < $< > $@
 
 #
