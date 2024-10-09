@@ -25,6 +25,9 @@ input_str = sys.stdin.read()
 # Get only the body
 body = re.search(r'<body>(.*)</body>', input_str, flags=re.DOTALL).group(1)
 
+# Drop original <h1> header (GitHub brings its own)
+body = re.sub(r'<h1>.*?</h1>', '', body)
+
 # Code is wrapped inside a table which results in ugly display on GitHub
 body = re.sub(r'<p><table><tr><td class="code"><pre>(.*?)</pre></td></tr></table></?p>', r'<pre>\1</pre>', body, flags=re.DOTALL)
 
