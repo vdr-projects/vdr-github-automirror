@@ -30,7 +30,8 @@ for index, paragraph in enumerate(paragraphs):
 
     # Match for headlines (single line with "underline")
     if len(lines) == 2 and re.match(r'^-+$', lines[1]):
-        print("# " + lines[0] + "\n")
+        # Do not actually make them headers but bold text
+        print("**" + lines[0] + "**\n")
 
     # Match for headlines (* in front of line)
     elif len(lines) == 1 and lines[0][0] == "*":
